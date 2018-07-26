@@ -1,14 +1,22 @@
+*.iml
+.idea/workspace.xml
+.idea/libraries
+.idea/misc.xml
+.idea/dataSources
+.idea/dataSources.xml
+.idea/artifacts
+.idea/sonarlint
+.idea/shelf
+.idea/uiDesigner.xml
+.idea/modules.xml
+.idea/compiler.xml
+.idea/gradle.xml
+*.local.xml
 .gradle
-/build/
-
-# Ignore Gradle GUI config
-gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
-# Cache of project
-.gradletasknamecache
-
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+out
+build
+temp*.*
+**/src/test/resources/*.war
+**/server-list.json
+**/flota-web-remote.war
+.DS_Store

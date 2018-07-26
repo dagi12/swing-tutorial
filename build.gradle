@@ -1,0 +1,50 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+group "pl.softra.swingtutorial"
+apply plugin: "java"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'idea'
+
+
+jar {
+    archiveName = "swing-tutorial.jar"
+    manifest {
+        attributes "Main-Class": "pl.softra.swingtutorial.Main"
+    }
+    doFirst {
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    }
+}
+
+//noinspection GroovyAssignabilityCheck
+task executableJar(type: Exec) {
+    if (!Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine "chmod", "774", "build/libs/swing-tutorial.jar"
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile group: "org.clojars.nakkaya", name: "darcula", version: "1.0.0"
+    compile group: "com.intellij", name: "forms_rt", version: "7.0.3"
+    compile "io.reactivex.rxjava2:rxjava:2.1.14"
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile "ch.qos.logback:logback-core:1.2.3"
+    compile "ch.qos.logback:logback-classic:1.2.3"
+
+    testCompile group: "junit", name: "junit", version: "4.12"
+    testCompile group: 'org.springframework', name: 'spring-test', version: '4.3.18.RELEASE'
+}
+
+jar.finalizedBy(executableJar)
