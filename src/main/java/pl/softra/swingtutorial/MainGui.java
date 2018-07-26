@@ -44,6 +44,7 @@ public class MainGui {
                 frame.setSize(WIDTH, HEIGHT);
                 frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             } catch (Exception e) {
+                LOGGER.error("Error when initializing", e);
                 System.exit(1);
             }
         });
